@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+img.toggle {
+    height: 16px;
+    top: 3px;
+    position: relative;
+    margin-right: 4px;
+}
+
+button.add-button, button.save-button {
+    margin: 0px 10px;
+}

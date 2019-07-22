@@ -1,0 +1,22 @@
+<div class="category-tree">
+  <div *ngFor="let category of categoryData; let i = index">
+    <p>
+      <img class="toggle" *ngIf="intermediateNodeVisible" src="../../assets/images/icons8-chevron-down-50.png" (click)="toggleChildNoe()" />
+      <img class="toggle" *ngIf="!intermediateNodeVisible" src="../../assets/images/icons8-chevron-right-50.png" (click)="toggleChildNoe()" />
+      <span>{{category.name}}</span>
+      <button class="add-button" (click)="newChildVisible = !newChildVisible">
+        <span *ngIf="!newChildVisible">+</span>
+        <span *ngIf="newChildVisible">-</span>
+      </button>
+        <span *ngIf="newChildVisible">
+          <input [(ngModel)]="newChild">
+          <button class="save-button" (click)="addChild(newChild, i)">Save child</button>
+        </span>
+    </p>
+    <div *ngIf="intermediateNodeVisible">
+      <div *ngFor="let intermediate of category.children">
+        <app-child-node [intermediate]="intermediate"></app-child-node>
+      </div>
+    </div>
+  </div>
+</div>

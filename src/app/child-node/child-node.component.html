@@ -1,0 +1,16 @@
+<div class="child-container">
+    <p>
+        <img class="toggle" *ngIf="intermediateChildVisible && intermediate.children.length" src="../../assets/images/icons8-chevron-down-50.png" (click)="toggleIntermediateChildNode()" />
+        <img class="toggle" *ngIf="!intermediateChildVisible && intermediate.children.length" src="../../assets/images/icons8-chevron-right-50.png" (click)="toggleIntermediateChildNode()" />
+        <span>{{intermediate.name}}</span>
+        <button class="add-button" (click)="newIntermediateChildVisible = !newIntermediateChildVisible">
+          <span *ngIf="!newIntermediateChildVisible">+</span>
+          <span *ngIf="newIntermediateChildVisible">-</span>
+        </button>
+        <span *ngIf="newIntermediateChildVisible">
+          <input [(ngModel)]="newIntermediateChild">
+          <button class="save-button" (click)="addIntermediateChild(newIntermediateChild, i)">Save child</button>
+        </span>
+      </p>
+    <app-intermediate-node *ngIf="intermediateChildVisible" [nodeData]="intermediate.children"></app-intermediate-node>
+</div>

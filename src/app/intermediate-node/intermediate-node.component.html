@@ -1,0 +1,23 @@
+<div class="intermediate-node">
+  <div *ngFor="let node of nodeData; let i = index">
+    <div *ngIf="node.type === 'intermediate'">
+      <p class="intermediate-node-text">
+        <img class="toggle" *ngIf="childNodeVisible && node.children.length" src="../../assets/images/icons8-chevron-down-50.png" (click)="toggleChildNode()" />
+        <img class="toggle" *ngIf="!childNodeVisible && node.children.length" src="../../assets/images/icons8-chevron-right-50.png" (click)="toggleChildNode()" />
+        <span>{{node.name}}</span>
+        <button class="add-button" (click)="newChildVisible = !newChildVisible">
+          <span *ngIf="!newChildVisible">+</span>
+          <span *ngIf="newChildVisible">-</span>
+        </button>
+        <span *ngIf="newChildVisible">
+          <input [(ngModel)]="newChild">
+          <button class="save-button" (click)="addChild(newChild, i)">Save child</button>
+        </span>
+      </p>
+      <app-intermediate-node *ngIf="childNodeVisible" [nodeData]="node.children"></app-intermediate-node>
+    </div>
+    <div *ngIf="node.type === 'leaf'">
+      <app-leaf-node [nodeData]="node"></app-leaf-node>
+    </div>
+  </div>
+</div>
